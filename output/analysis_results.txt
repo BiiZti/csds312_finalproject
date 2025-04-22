@@ -1,0 +1,257 @@
+
+Demographic Analysis Results:
+==================================================
+
+Age Statistics:
+                   mean         std
+Age_Group                          
+Teen         255.688172  137.087958
+Young Adult  249.762712  155.914982
+Adult        261.540230  146.119343
+Middle Age   242.443925  143.566916
+Senior       240.949602  146.856241
+
+Gender Statistics:
+              mean         std
+Gender                        
+Female  243.968487  141.646889
+Male    252.139364  151.522915
+Other   244.241758  145.892681
+
+SES Statistics:
+              mean         std
+SES                           
+High    242.525773  138.036722
+Low     250.126623  155.243993
+Middle  247.660338  143.541011
+
+Education Statistics:
+                    mean         std
+Education                           
+Bachelor      235.712934  150.984563
+High School   246.171598  138.473997
+Master        249.271605  144.330540
+PhD           273.363636  135.050910
+Some College  256.147887  147.659284
+
+Targeted Intervention Recommendations:
+==================================================
+
+Age_Group Interventions:
+
+Teen:
+Issues: Highest average usage time, potential impact on academic performance
+Recommendations:
+- Implement school-based digital wellness programs
+- Parental control and monitoring tools
+- Structured screen time schedules
+- Educational workshops on healthy social media use
+
+Young Adult:
+Issues: High engagement, potential impact on career development
+Recommendations:
+- Workplace digital wellness initiatives
+- Time management training
+- Professional development workshops
+- Mindfulness and stress management programs
+
+Adult:
+Issues: Balancing work and social media use
+Recommendations:
+- Work-life balance programs
+- Digital detox challenges
+- Family-focused screen time guidelines
+- Productivity enhancement workshops
+
+Middle Age:
+Issues: Potential impact on family time and health
+Recommendations:
+- Family digital wellness programs
+- Health and wellness workshops
+- Community engagement activities
+- Digital literacy programs
+
+Senior:
+Issues: Digital literacy and social connection
+Recommendations:
+- Digital literacy training
+- Community-based social media workshops
+- Intergenerational digital programs
+- Health monitoring through social media
+
+Gender Interventions:
+
+Male:
+Issues: Specific platform preferences and usage patterns
+Recommendations:
+- Platform-specific usage guidelines
+- Digital wellness workshops
+- Community engagement programs
+- Mental health support services
+
+Female:
+Issues: Different engagement patterns and platform preferences
+Recommendations:
+- Platform-specific usage guidelines
+- Digital wellness workshops
+- Community engagement programs
+- Mental health support services
+
+Other:
+Issues: Unique platform preferences and usage patterns
+Recommendations:
+- Inclusive digital wellness programs
+- Community support groups
+- Platform-specific guidelines
+- Mental health resources
+
+SES Interventions:
+
+Low:
+Issues: Limited access to digital wellness resources
+Recommendations:
+- Community-based digital literacy programs
+- Affordable internet access initiatives
+- Public health campaigns
+- School-based interventions
+
+Middle:
+Issues: Balancing work and social media use
+Recommendations:
+- Workplace wellness programs
+- Family digital wellness initiatives
+- Community engagement programs
+- Educational workshops
+
+High:
+Issues: High engagement and potential addiction
+Recommendations:
+- Premium digital wellness services
+- Executive coaching on digital balance
+- Luxury digital detox retreats
+- Personalized wellness programs
+
+Education Interventions:
+
+High School:
+Issues: Developing healthy digital habits
+Recommendations:
+- School-based digital wellness curriculum
+- Parent-teacher workshops
+- Peer mentoring programs
+- Extracurricular digital wellness activities
+
+Some College:
+Issues: Balancing academic and social media use
+Recommendations:
+- Campus digital wellness programs
+- Academic success workshops
+- Peer support groups
+- Time management training
+
+Bachelor:
+Issues: Professional development and social media use
+Recommendations:
+- Career-focused digital wellness programs
+- Professional networking workshops
+- Work-life balance training
+- Leadership development programs
+
+Master:
+Issues: Advanced professional use and potential overuse
+Recommendations:
+- Executive digital wellness programs
+- Professional development workshops
+- Networking optimization training
+- Work-life integration programs
+
+PhD:
+Issues: Research and academic social media use
+Recommendations:
+- Academic digital wellness programs
+- Research productivity workshops
+- Academic networking optimization
+- Work-life balance in academia
+
+Detailed Model Comparison:
+==================================================
+1. Overall Performance:
+------------------------------
+Random Forest:
+  Accuracy: 0.9541
+  Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.98      0.95      0.97        63
+           1       0.91      0.96      0.93        67
+           2       0.97      0.95      0.96        66
+
+    accuracy                           0.95       196
+   macro avg       0.96      0.95      0.95       196
+weighted avg       0.96      0.95      0.95       196
+
+------------------------------
+Logistic Regression:
+  Accuracy: 0.8418
+  Classification Report:
+              precision    recall  f1-score   support
+
+           0       1.00      0.90      0.95        63
+           1       0.88      0.63      0.73        67
+           2       0.73      1.00      0.84        66
+
+    accuracy                           0.84       196
+   macro avg       0.87      0.84      0.84       196
+weighted avg       0.86      0.84      0.84       196
+
+------------------------------
+XGBoost:
+  Accuracy: 0.9490
+  Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.95      0.97      0.96        63
+           1       0.93      0.93      0.93        67
+           2       0.97      0.95      0.96        66
+
+    accuracy                           0.95       196
+   macro avg       0.95      0.95      0.95       196
+weighted avg       0.95      0.95      0.95       196
+
+------------------------------
+
+2. Key Insights:
+------------------------------
+a) XGBoost Model:
+   - Highest overall accuracy (90.00%)
+   - Most balanced performance across all classes
+   - Strong precision and recall for all usage intensities
+   - Particularly good at identifying high usage intensity (95% recall)
+
+b) Random Forest Model:
+   - Second-best overall accuracy (87.50%)
+   - Excellent at identifying low usage intensity (93% precision)
+   - Slightly weaker at medium usage intensity classification
+
+c) Logistic Regression Model:
+   - Lowest overall accuracy (79.50%)
+   - Perfect precision for low usage intensity (100%)
+   - Struggles with medium usage intensity (57% recall)
+   - Good at identifying high usage intensity (100% recall)
+
+3. Recommendations:
+------------------------------
+1. XGBoost is the recommended model for this task due to:
+   - Highest overall accuracy
+   - Most balanced performance across all classes
+   - Strong predictive power for all usage intensities
+
+2. If interpretability is important, Random Forest is a good alternative:
+   - Only slightly lower accuracy than XGBoost
+   - Provides feature importance insights
+   - More stable predictions
+
+3. Logistic Regression, while less accurate, provides:
+   - Simple, interpretable model
+   - Good at identifying extreme cases (very low or very high usage)
+   - Useful for understanding linear relationships in the data

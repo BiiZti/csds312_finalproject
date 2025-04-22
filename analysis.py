@@ -40,7 +40,7 @@ def restore_stdout(output_file, original_stdout):
 def load_data():
     """Load and combine the datasets"""
     # Load social media usage dataset
-    usage_df = pd.read_csv('data/social_media_usage/social_media_usage.csv')
+    usage_df = pd.read_csv('social_media_usage.csv')
     return usage_df
 
 # Data Cleaning
@@ -363,7 +363,7 @@ def analyze_demographic_impact(df):
     plt.title('Daily Minutes Spent by Gender')
     
     plt.subplot(1, 2, 2)
-    gender_usage = df.groupby('Gender')['Usage_Intensity'].value_counts(normalize=True).unstack()
+    gender_usage = df.groupby('Gender', observed=True)['Usage_Intensity'].value_counts(normalize=True).unstack()
     gender_usage.plot(kind='bar', stacked=True)
     plt.title('Usage Intensity Distribution by Gender')
     plt.legend(title='Usage Intensity')
@@ -378,7 +378,7 @@ def analyze_demographic_impact(df):
     plt.title('Daily Minutes Spent by Socioeconomic Status')
     
     plt.subplot(1, 2, 2)
-    ses_usage = df.groupby('SES')['Usage_Intensity'].value_counts(normalize=True).unstack()
+    ses_usage = df.groupby('SES', observed=True)['Usage_Intensity'].value_counts(normalize=True).unstack()
     ses_usage.plot(kind='bar', stacked=True)
     plt.title('Usage Intensity Distribution by SES')
     plt.legend(title='Usage Intensity')
@@ -394,7 +394,7 @@ def analyze_demographic_impact(df):
     plt.xticks(rotation=45)
     
     plt.subplot(1, 2, 2)
-    edu_usage = df.groupby('Education')['Usage_Intensity'].value_counts(normalize=True).unstack()
+    edu_usage = df.groupby('Education', observed=True)['Usage_Intensity'].value_counts(normalize=True).unstack()
     edu_usage.plot(kind='bar', stacked=True)
     plt.title('Usage Intensity Distribution by Education')
     plt.xticks(rotation=45)
@@ -405,10 +405,10 @@ def analyze_demographic_impact(df):
     
     # Calculate demographic statistics
     demographic_stats = {
-        'Age': df.groupby('Age_Group')['Daily_Minutes_Spent'].agg(['mean', 'std']),
-        'Gender': df.groupby('Gender')['Daily_Minutes_Spent'].agg(['mean', 'std']),
-        'SES': df.groupby('SES')['Daily_Minutes_Spent'].agg(['mean', 'std']),
-        'Education': df.groupby('Education')['Daily_Minutes_Spent'].agg(['mean', 'std'])
+        'Age': df.groupby('Age_Group', observed=True)['Daily_Minutes_Spent'].agg(['mean', 'std']),
+        'Gender': df.groupby('Gender', observed=True)['Daily_Minutes_Spent'].agg(['mean', 'std']),
+        'SES': df.groupby('SES', observed=True)['Daily_Minutes_Spent'].agg(['mean', 'std']),
+        'Education': df.groupby('Education', observed=True)['Daily_Minutes_Spent'].agg(['mean', 'std'])
     }
     
     return demographic_stats
